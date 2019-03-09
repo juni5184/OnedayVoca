@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "743584720949",
+    "firebase_url": "https://onedayvoca-91912.firebaseio.com",
+    "project_id": "onedayvoca-91912",
+    "storage_bucket": "onedayvoca-91912.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:743584720949:android:7791774309c4aef2",
+        "android_client_info": {
+          "package_name": "com.example.onedayvoca"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "743584720949-65o0r44sd67rbkfha5ps00q93beim30h.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.onedayvoca",
+            "certificate_hash": "9bb4278eeb2c61f490718286032172806547706e"
+          }
+        },
+        {
+          "client_id": "743584720949-l9ft48pv90ensrs3ljp9dqiurecc74pb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvWHi3bonzm2jVBgRkKfuaVbvqeaNzPTc"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "743584720949-l9ft48pv90ensrs3ljp9dqiurecc74pb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

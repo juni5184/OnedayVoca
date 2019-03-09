@@ -1,0 +1,126 @@
+apply plugin: 'com.android.application'
+
+android {
+    compileSdkVersion 26
+
+    sourceSets.main {
+        jniLibs.srcDir 'libs'
+        jni.srcDirs = [] //disable automatic ndk-build call
+    }
+
+    defaultConfig {
+        applicationId "com.example.onedayvoca"
+        minSdkVersion 26
+        targetSdkVersion 26
+        versionCode 1
+        versionName "1.0"
+        multiDexEnabled true
+        resConfigs "en", "ko"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        ndk {
+            abiFilters 'armeabi-v7a', 'x86'
+        }
+        javaCompileOptions {
+            annotationProcessorOptions {
+                includeCompileClasspath false
+            }
+        }
+        packagingOptions {
+            exclude 'org/apache/http/version.properties'
+            exclude 'org/apache/http/client/version.properties'
+            exclude 'project.properties'
+            exclude 'META-INF/io.netty.versions.properties'
+            exclude 'META-INF/INDEX.LIST'
+            exclude 'META-INF/DEPENDENCIES'
+            doNotStrip '*/armeabi-v7a/*.so'
+            doNotStrip '*/x86/*.so'
+        }
+        compileOptions {
+            sourceCompatibility JavaVersion.VERSION_1_8
+            targetCompatibility JavaVersion.VERSION_1_8
+        }
+    }
+
+    lintOptions {
+        abortOnError false
+    }
+
+    aaptOptions {
+        noCompress '.unity3d', '.ress', '.resource', '.obb'
+    }
+
+    buildTypes {
+        release {
+            shrinkResources true
+            minifyEnabled true
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'
+            signingConfig signingConfigs.debug
+        }
+        debug {
+            minifyEnabled false
+            useProguard false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-unity.txt'
+            jniDebuggable true
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
+    implementation 'com.android.support:appcompat-v7:26.0.2'
+    implementation 'com.android.support:support-annotations:27.1.1'
+    implementation 'com.android.support:design:26.0.2'
+    implementation 'com.android.support:support-core-utils:26.0.2'
+    implementation 'com.android.support:customtabs:26.0.2'
+    //layout
+    implementation 'com.android.support:cardview-v7:26.0.2'
+    implementation 'com.android.support:recyclerview-v7:26.0.2'
+    implementation 'com.android.support.constraint:constraint-layout:1.1.2'
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+    //google translation api
+    implementation('com.google.apis:google-api-services-translate:v2-rev47-1.22.0') {
+        exclude group: 'com.google.guava'
+    }
+    implementation('com.google.cloud:google-cloud-translate:0.5.0') {
+        exclude group: 'io.grpc', module: 'grpc-all'
+        exclude group: 'com.google.protobuf', module: 'protobuf-java'
+        exclude group: 'com.google.api-client', module: 'google-api-client-appengine'
+    }
+    //floating action button, menu
+    implementation 'com.github.clans:fab:1.6.2'
+    //google vision api
+    //    implementation 'com.google.api-client:google-api-client-android:1.23.0' exclude module: 'httpclient'
+    //    implementation 'com.google.http-client:google-http-client-gson:1.23.0' exclude module: 'httpclient'
+    //    implementation 'com.google.apis:google-api-services-vision:v1-rev369-1.23.0'
+    //    implementation 'com.google.cloud:google-cloud-vision:1.14.0'
+    implementation 'com.google.android.gms:play-services-vision:11.4.0'
+    //하단패널 라이브러리
+    compile 'com.sothree.slidinguppanel:library:3.4.0'
+    //naver login
+    implementation files('libs/naveridlogin_android_sdk_4.2.0.aar')
+    //kakao login
+    implementation group: project.KAKAO_SDK_GROUP, name: 'usermgmt', version: project.KAKAO_SDK_VERSION
+    //ocr돌려서 사진속 글자 읽어주는 라이브러리
+    implementation 'com.rmtheis:tess-two:9.0.0'
+    annotationProcessor 'com.google.auto.value:auto-value:1.4.1'
+    //WebRTC
+    implementation files('libs/autobanh.jar')
+    implementation files('libs/audio_device_java.jar')
+    implementation files('libs/base_java.jar')
+    implementation files('libs/libjingle_peerconnection.jar')
+    //QR코드
+    compile 'com.journeyapps:zxing-android-embedded:3.5.0'
+    //web3j
+    implementation 'org.web3j:core:3.3.1-android'
+    implementation files('libs/unity-classes.jar')
+}
+
+
+
+
+
+apply plugin: 'com.google.gms.google-services'
